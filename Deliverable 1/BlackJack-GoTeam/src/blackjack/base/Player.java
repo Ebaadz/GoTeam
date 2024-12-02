@@ -44,6 +44,15 @@ public class Player {
         }
         return hand_score;
     }
+    
+    public String displayHand() {
+        String cards_in_hand = "";
+        for (Card c : hand) {
+            cards_in_hand += c.getRank() + " of " + c.getSuit() + "\n";
+        }
+        return cards_in_hand;
+    }
+    
     public int getScore() { return score; }
     public String getName() { return name; }
 
