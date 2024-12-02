@@ -22,23 +22,29 @@ public class BlackJackGoTeam {
 
         Player player = new Player("Player");
         Player dealer = new Player("Dealer");
-
+        //setup
+        player.addCard(deck.dealCard());
+        player.addCard(deck.dealCard());
+        dealer.addCard(deck.dealCard());
+        dealer.addCard(deck.dealCard());
         boolean playerTurn = true;
 
         System.out.println("Welcome to Blackjack!");
 
         // Player's turn
         while (playerTurn) {
-            System.out.println("Your current score: " + player.getScore());
+            System.out.println("Your current score: " + player.getScore() + 
+                    "\nYour hand:\n" + player.displayHand());
             System.out.println("Do you want to 'hit' or 'stand'?");
             String choice = scanner.nextLine();
 
             if (choice.equalsIgnoreCase("hit")) {
                 player.addCard(deck.dealCard());
-                System.out.println("You drew a card. Your new score: " + player.getScore());
 
                 if (player.getScore() > 21) {
                     System.out.println("You busted! Dealer wins.");
+                    System.out.println("Your hand:\n" + player.displayHand());
+                    System.out.println("Dealer hand:\n" + dealer.displayHand());
                     return;
                 }
             } else if (choice.equalsIgnoreCase("stand")) {
@@ -51,16 +57,23 @@ public class BlackJackGoTeam {
         // Dealer's turn
         while (dealer.getScore() < 21 && dealer.getScore() < player.getScore()) {
             dealer.addCard(deck.dealCard());
-            System.out.println("Dealer drew a card. Dealer's score: " + dealer.getScore());
+            System.out.println("Dealer drew a card. Dealer's score: " + 
+                    dealer.getScore() + "\nDealer hand:\n" + dealer.displayHand());
         }
 
         // Determine the winner
         if (dealer.getScore() > 21 || player.getScore() > dealer.getScore()) {
-            System.out.println("You win! Dealer's score: " + dealer.getScore());
+            System.out.println("You win!");
+            System.out.println("Your score: " + player.getScore() + "\nYour hand:\n" + player.displayHand());
+            System.out.println("Dealer's score: " + dealer.getScore() + "\nDealer hand:\n" + dealer.displayHand());
         } else if (dealer.getScore() == player.getScore()) {
             System.out.println("It's a tie!");
+            System.out.println("Your score: " + player.getScore() + "\nYour hand:\n" + player.displayHand());
+            System.out.println("Dealer's score: " + dealer.getScore() + "\nDealer hand:\n" + dealer.displayHand());
         } else {
-            System.out.println("Dealer wins! Dealer's score: " + dealer.getScore());
+            System.out.println("Dealer wins!");
+            System.out.println("Your score: " + player.getScore() + "\nYour hand:\n" + player.displayHand());
+            System.out.println("Dealer's score: " + dealer.getScore() + "\nDealer hand:\n" + dealer.displayHand());
         }
     }
 }
