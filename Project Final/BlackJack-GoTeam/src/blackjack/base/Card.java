@@ -6,24 +6,45 @@ package blackjack.base;
 
 /**
  *
- * @author GoTeam
+ * @author Ebaad
  */
+
+
 public class Card {
-    private String suit;
-    private String rank;
-    private int value;
-    
-    // creates a card with a given suit, rank, and value
-    public Card(String suit, String rank, int value) {
-        this.suit = suit;
+    private String rank; // Rank of the card (2-10, Jack, Queen, King, Ace)
+    private String suit; // Suit of the card (Hearts, Spades, Diamonds, Clubs)
+
+    // Constructor
+    public Card(String rank, String suit) {
         this.rank = rank;
-        this.value = value;
+        this.suit = suit;
     }
 
-    public String getSuit() { return suit; }
-    public String getRank() { return rank; }
-    public int getValue() { return value; }
+    // Get the rank of the card
+    public String getRank() {
+        return rank;
+    }
 
+    // Get the suit of the card
+    public String getSuit() {
+        return suit;
+    }
+
+    // Get the value of the card for scoring
+    public int getValue() {
+        switch (rank) {
+            case "Ace":
+                return 11; // Ace is worth 11 points
+            case "King":
+            case "Queen":
+            case "Jack":
+                return 10; // Face cards are worth 10 points
+            default:
+                return Integer.parseInt(rank); // Numeric cards are worth their face value
+        }
+    }
+
+    // String representation of the card
     @Override
     public String toString() {
         return rank + " of " + suit;
