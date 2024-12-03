@@ -4,38 +4,39 @@
  */
 package blackjack.base;
 
+/**
+ *
+ * @author Ebaad
+ */
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-/**
- *
- * @author GoTeam
- */
-
 
 public class Deck {
-    private List<Card> cards;
+    private List<Card> cards; // List to store the cards in the deck
 
+    // Constructor to initialize the deck with 52 cards
     public Deck() {
         cards = new ArrayList<>();
         String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
-        String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
-        // face cards have value of 10, while Aces are assigned a value of 11 by default
-        int[] values = {2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11};
+        String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"};
 
+        // Populate the deck with cards
         for (String suit : suits) {
-            for (int i = 0; i < ranks.length; i++) {
-                cards.add(new Card(suit, ranks[i], values[i]));
+            for (String rank : ranks) {
+                cards.add(new Card(rank, suit));
             }
         }
-        shuffle();
     }
 
+    // Shuffle the deck
     public void shuffle() {
-        Collections.shuffle(cards);
+        Collections.shuffle(cards); // Shuffle the cards randomly
     }
 
+    // Deal one card from the deck
     public Card dealCard() {
-        return cards.remove(0);
+        return cards.remove(cards.size() - 1); // Remove the last card from the deck
     }
 }
