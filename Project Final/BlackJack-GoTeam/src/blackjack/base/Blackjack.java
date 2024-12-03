@@ -7,13 +7,13 @@ package blackjack.base;
 import java.util.Scanner;
 
 
-public class BlackjackGame {
+public class Blackjack {
     private Deck deck;   // Deck of cards
     private Player player; // Player's details
     private Player dealer; // Dealer's details
 
     // Constructor initializes the game
-    public BlackjackGame() {
+    public Blackjack() {
         this.deck = new Deck();
         this.player = new Player("Player"); // Player is named "Player"
         this.dealer = new Player("Dealer"); // Dealer is named "Dealer"
@@ -102,7 +102,7 @@ public class BlackjackGame {
     }
 
     public static void main(String[] args) {
-        BlackjackGame game = new BlackjackGame();
+        Blackjack game = new Blackjack();
         game.startGame();
     }
 }
